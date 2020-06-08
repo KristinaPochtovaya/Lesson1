@@ -83,83 +83,163 @@ class  Navbar extends React.Component {
 };
 };
 
+// class ListOfCosts extends React.Component {
+//   constructor (props) {
+//     super (props);
+//     this.state = {
+//       moneyAndDescription: [
+//         {
+//          id: "",
+//          money: "",
+//          description: "",
+//         }
+//       ],
+//       money: "",
+//       description:"",
+//     };
+//   } 
+//   onDelete=(id) => {
+//     console.log(id)
+//     const moneyDescription =[...this.state.moneyAndDescription];
+//     moneyDescription.filter(
+//      (md)=> md.id!==id
+//       )
+   
+//     this.setState (
+//       moneyDescription,
+//     )
+//   };
+//   render () {
+//     return (
+//         <div>
+//         <form onSubmit ={(e)=> e.preventDefault()}>
+//           <label htmlFor="money"> Amount of Money </label>
+//           <input
+//           value = {this.state.money}
+//           onChange = {(e) => this.setState({
+//             money: e.target.value,
+//           })}          
+//          type="text"/>
+//           <label htmlFor="costs"> Description of Costs </label> 
+//           <input
+//           value = {this.state.description}
+//           onChange = {(e) => this.setState({
+//             description: e.target.value,
+//           })}
+//           type="text"/>
+//           <button
+//           onClick={() => {
+//             const moneyAndDescription = [
+//               ...this.state.moneyAndDescription,
+//               {
+//               id: Math.round(Math.random()*10000),
+//               money:this.state.money,
+//               description:this.state.description
+//              },       
+//              ];
+//             this.setState({
+//             moneyAndDescription,
+//             money: "",
+//             description: "",
+//           })
+//           }}
+//           >
+//           Add
+//           </button>
+//            </form>  
+//            <div>
+//         {this.state.moneyAndDescription.map((unit)=> (
+//           <p key={unit.id}>
+//             {unit.money}{" "}
+//           {unit.description}{" "}
+//         {unit.id!==""?<button
+//                                         onClick={() => this.onDelete(unit.id)}>
+//                                           Delete</button>:""}
+//           </p> 
+// ))}
+// </div>
+//       </div>
+//     )
+//   }
+// }
+
 class ListOfCosts extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
+
     this.state = {
       moneyAndDescription: [
         {
-         id: "",
-         money: "",
-         description: "",
+          id:"",
+          money:"",
+          description:"",
         }
-      ],
-      money: "",
-      description:"",
-    };
-  } 
-  onDelete=(id) => {
-    console.log(id)
-    const moneyDescription =[...this.state.moneyAndDescription];
-    moneyDescription.filter(
-     (md)=> md.id!==id
-      )
-   
-    this.setState (
-      moneyDescription,
-    )
-  };
-  render () {
+      ]
+    }
+  }
+  render() {
     return (
-        <div>
-        <form onSubmit ={(e)=> e.preventDefault()}>
-          <label htmlFor="money"> Amount of Money </label>
-          <input
-          value = {this.state.money}
-          onChange = {(e) => this.setState({
-            money: e.target.value,
-          })}          
-         type="text"/>
-          <label htmlFor="costs"> Description of Costs </label> 
-          <input
-          value = {this.state.description}
-          onChange = {(e) => this.setState({
-            description: e.target.value,
-          })}
-          type="text"/>
-          <button
-          onClick={() => {
-            const moneyAndDescription = [
-              ...this.state.moneyAndDescription,
-              {
-              id: Math.round(Math.random()*10000),
-              money:this.state.money,
-              description:this.state.description
-             },       
-             ];
-            this.setState({
-            moneyAndDescription,
-            money: "",
-            description: "",
-          })
-          }}
-          >
+    <div>
+      <form onSubmit={(e)=>e.preventDefault()}> 
+      <label htmlFor="money"> Amount of Money </label>
+      <input 
+        onChange={(e)=>{
+          this.setState(
+            this.state.moneyAndDescription.map((unit)=> (         
+                           unit.money=e.target.value))
+            );
+        }}
+        type="text"
+        name="money"
+      />
+      <label htmlFor="description"> Description of Costs </label>
+      <input
+        onChange={(e)=>{
+          this.setState(
+            this.state.moneyAndDescription.map((unit)=> (         
+                           unit.description=e.target.value))
+            );
+        }}
+        type="text"
+        name="desctiption"  
+      />
+      <button 
+        onClick={(e)=>{
+          const moneyAndDescription1=[
+            ...this.state.moneyAndDescription,
+            //   {
+            //   id: Math.round(Math.random()*10000),
+            //   money:this.state.money,
+            //   description:this.state.description
+            //  }, 
+          ];
+console.log(moneyAndDescription1)
+          this.setState(
+            
+            this.state.moneyAndDescription.map((unit)=> (         
+              unit.description="",
+              unit.money=""
+              ))
+);
+          
+        }}
+        
+      >
           Add
-          </button>
-           </form>  
-           <div>
+      </button>
+      </form>
+        <div>
         {this.state.moneyAndDescription.map((unit)=> (
           <p key={unit.id}>
             {unit.money}{" "}
           {unit.description}{" "}
-        {unit.id!==""?<button
+        {/* {unit.id!==""?<button
                                         onClick={() => this.onDelete(unit.id)}>
-                                          Delete</button>:""}
+                                          Delete</button>:""} */}
           </p> 
 ))}
 </div>
-      </div>
-    )
+    </div>)
   }
 }
 
